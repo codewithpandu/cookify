@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(0.9691 0.0147 80.71);
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Calistoga", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-primary;
+  }
+}
