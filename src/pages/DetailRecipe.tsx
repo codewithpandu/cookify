@@ -1,30 +1,39 @@
 import { Link, useParams } from "react-router-dom";
-import Layout from "../components/layouts";
+import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { recipeDetail } from "../services/recipes";
+import { recipeDetail, type Recipe } from "../services/recipes";
 import { useQuery } from "@tanstack/react-query";
 import { CiClock2 } from "react-icons/ci";
 import { GoPeople } from "react-icons/go";
 import { FaStar } from "react-icons/fa";
 
 export default function DetailRecipe() {
-  const { id } = useParams();
+  const { slug } = useParams();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["recipe", id],
-    queryFn: () => recipeDetail(id!),
-    enabled: !!id,
+  const { data, isLoading, error } = useQuery<Recipe>({
+    queryKey: ["recipe", slug],
+    queryFn: () => recipeDetail(slug!),
+    enabled: !!slug,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <Layout>
+        <Navbar />
+        <section className="py-24">
+          <div className="container p-4">
+            <p>Loading...</p>
+          </div>
+        </section>
+      </Layout>
+    );
   if (error) return <p>Error</p>;
+  if (!data) return <p>Recipe not found</p>;
 
   return (
     <Layout>
-      <Navbar />
-
-      <section className="py-24">
+      <section className="pt-24 pb-12">
         <div className="container p-4 max-w-3xl mx-auto">
           <Link to="/">
             <small className="text-orange-500">
@@ -37,6 +46,14 @@ export default function DetailRecipe() {
 
           <div className="mt-8">
             <h2 className="text-3xl text-center font-serif">{data.name}</h2>
+            <div className="text-center space-x-2">
+              <small className="text-orange-500 font-semibold">
+                {data.cuisine}
+              </small>
+              <Link to={`/recipe/meal/${data.mealType}`}>
+                <small className="font-semibold">{data.mealType}</small>
+              </Link>
+            </div>
             <div className="mx-auto rounded-2xl w-full md:w-md overflow-hidden mt-4">
               <img src={data.image} alt={data.name} className="w-full" />
             </div>
