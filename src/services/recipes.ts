@@ -10,7 +10,7 @@ export type Recipe = {
   rating: number;
   tags: string[];
   ingredients: string[];
-  mealType: string;
+  mealType: string[];
   servings: number;
   instructions: string[];
 };
@@ -70,4 +70,22 @@ export const recipeDetail = async (slug: string): Promise<Recipe> => {
   );
   if (!recipe) throw new Error("Recipe not found");
   return recipe;
+};
+
+export const getAllTags = async (): Promise<string[]> => {
+  const res = await fetch(`https://dummyjson.com/recipes/tags`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch recipes");
+  }
+  return res.json();
+};
+
+export const getAllMeals = async (): Promise<string[]> => {
+  const res = await fetch(`https://dummyjson.com/recipes`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch recipes");
+  }
+  const data: RecipesResponse = await res.json();
+
+  return [...new Set(data.recipes.map((r: Recipe) => r.mealType).flat())];
 };

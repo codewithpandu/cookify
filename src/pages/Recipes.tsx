@@ -26,8 +26,6 @@ export default function RecipesPage() {
   if (!data) return null;
   return (
     <Layout>
-      <Navbar />
-
       <section className="py-24">
         <div className="container p-4">
           <h3 className="text-2xl font-semibold">All recipes</h3>

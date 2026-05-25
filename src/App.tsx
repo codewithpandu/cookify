@@ -4,6 +4,7 @@ import HomePage from "./pages/Home";
 import RecipesPage from "./pages/Recipes";
 import RecipeByTag from "./pages/RecipeByTag";
 import RecipeByMeal from "./pages/RecipeByMeal";
+import CategoriesPage from "./pages/Categories";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/recipes" element={<RecipesPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/recipe/:slug" element={<DetailRecipe />} />
         <Route path="/recipe/tag/:tag" element={<RecipeByTag />} />
         <Route path="/recipe/meal/:meal" element={<RecipeByMeal />} />
