@@ -6,6 +6,7 @@ type Recipe = {
   difficulty: string;
   cookTimeMinutes: number;
   rating: number;
+  tags: string[];
 };
 
 type RecipesResponse = {
@@ -18,5 +19,10 @@ export const getRecipes = async (): Promise<RecipesResponse> => {
     throw new Error("Failed to fetch recipes");
   }
 
+  return res.json();
+};
+
+export const recipeDetail = async (id: string) => {
+  const res = await fetch(`https://dummyjson.com/recipes/${id}`);
   return res.json();
 };
