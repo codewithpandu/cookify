@@ -39,7 +39,7 @@ export default function DetailRecipe() {
             <small className="text-orange-500">
               <span className="inline-flex items-center gap-2">
                 <FaLongArrowAltLeft />
-                Semua Resep
+                Back
               </span>
             </small>
           </Link>

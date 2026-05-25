@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import Recipes from "../components/RecipeCard";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import { getRecipes, type RecipesResponse } from "../services/recipes";
+import { Link } from "react-router-dom";
 
 console.log(await getRecipes(6));
 
@@ -31,17 +33,29 @@ export default function HomePage() {
       <section className="pt-24 pb-12">
         <div className="container p-4">
           <div className="py-4">
-            <small className="text-orange-400">Edisi · Masakan Rumahan</small>
+            <small className="text-orange-400">
+              Home Edition · Everyday Recipes
+            </small>
             <h2 className="text-3xl w-80 font-serif py-4 md:text-5xl md:w-lg">
-              Masakan Rumahan,
-              <span className="text-orange-400"> Rasa Tak Tergantikan</span>
+              Simple Meals,
+              <span className="text-orange-400"> Made with Heart</span>
             </h2>
             <p>
-              Kumpulan resep favorit dari dapur kami — sederhana, jujur, dan
-              dibuat untuk dimasak ulang berkali-kali.
+              A collection of comforting recipes crafted for real kitchens —
+              easy to cook, satisfying to share, and worth making again and
+              again.
             </p>
           </div>
 
+          <div className="mt-8">
+            <div className="w-fit ms-auto">
+              <Link to="/recipes">
+                <span className="inline-flex items-center gap-2 text-right text-xl font-semibold  hover:text-orange-500">
+                  More Recipes <FaLongArrowAltRight />
+                </span>
+              </Link>
+            </div>
+          </div>
           <Recipes data={data} />
           <div className="mt-8">
             <div className="flex flex-col gap-8 bg-amber-500 p-8 rounded-2xl w-full max-w-3xl mx-auto md:flex-row md:py-12">
