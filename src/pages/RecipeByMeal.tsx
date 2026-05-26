@@ -34,8 +34,10 @@ export default function RecipeByMeal() {
       <section className="py-24">
         <div className="container p-4">
           <h3 className="text-2xl font-semibold">
-            Meals
-            <span className="text-orange-500"> {data.recipes[0].mealType}</span>
+            Meals{" "}
+            <span className="text-orange-500">
+              {data.recipes[0].mealType.join(", ")}
+            </span>
           </h3>
           <Recipes data={data} />
         </div>

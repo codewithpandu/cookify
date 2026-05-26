@@ -50,9 +50,11 @@ export default function DetailRecipe() {
               <small className="text-orange-500 font-semibold">
                 {data.cuisine}
               </small>
-              <Link to={`/recipe/meal/${data.mealType}`}>
-                <small className="font-semibold">{data.mealType}</small>
-              </Link>
+              {data.mealType.map((meal, index) => (
+                <Link key={index} to={`/recipe/meal/${meal}`}>
+                  <small className="font-semibold">{meal}</small>
+                </Link>
+              ))}
             </div>
             <div className="mx-auto rounded-2xl w-full md:w-md overflow-hidden mt-4">
               <img src={data.image} alt={data.name} className="w-full" />
